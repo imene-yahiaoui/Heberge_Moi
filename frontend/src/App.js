@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import RoutesPath from "./components/RoutesPath/RoutesPath";
+import { useState, useEffect } from "react";
+import "./assets/sass/pages/_App.scss";
 
-function App() {
+const App = () => {
+  const [posts, setPosts] = useState([]);
+  const [dataAbout, setDataAbout] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const requete = await fetch(" http://localhost:3000/api/accommodate", {
+          method: "GET",
+        });
+        if (requete.ok) {
+          const response = await requete.json();
+
+          setPosts(response);
+          console.log(response);
+         
+        }
+      } catch (e) {
+        console.log(e, "error");
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const requete = await fetch("../../About.json", {
+          method: "GET",
+        });
+        if (requete.ok) {
+          const data = await requete.json();
+          setDataAbout(data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="App">
+        <Header />
+        <RoutesPath posts={posts} dataAbout={dataAbout} />
+      </div>
+      <Footer />
     </div>
   );
-}
-
+};
 export default App;

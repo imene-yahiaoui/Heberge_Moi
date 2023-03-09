@@ -1,0 +1,90 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixin";
+.collapse {
+  padding-top: 10px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.collapse-title {
+  width: 88%;
+  height: 47px;
+  background-color: $color-primaire;
+  color: $color-Secondaire;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+  border-radius: 10px;
+  h6 {
+    font-size: 24px;
+    margin-left: 20px;
+  }
+  .fa-angle-up,
+  .fa-angle-down {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+.collapse-article {
+  width: 88%;
+  background-color: $color-gray;
+  display: flex;
+  align-items: center;
+  // height: 200px;
+  border-radius: 10px;
+  margin-top: -9px;
+  z-index: -1;
+  padding-top: 20px;
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Montserrat;
+    margin: 20px;
+    color: $color-primaire;
+    line-height: 25.67px;
+  }
+  .ArryText {
+    font-weight: 400;
+    font-family: Montserrat;
+    display: flex;
+    flex-direction: column;
+    color: $color-primaire;
+    font-size: 18px;
+    align-items: flex-start;
+    // row-gap: 8px;
+    line-height: 25.67px;
+  }
+}
+.collapse_continer {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@include portable {
+  .collapse-title,
+  .collapse-article {
+    width: 93%;
+  }
+  .collapse_continer {
+    width: 100%;
+  }
+
+  .collapse-title h6 {
+    font-size: 13px;
+  }
+  .collapse-article {
+    .ArryText,
+    p {
+      font-size: 13px;
+    }
+  }
+}

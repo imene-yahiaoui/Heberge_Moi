@@ -1,0 +1,32 @@
+@import "../abstracts/variables";
+
+
+.info_utilisateur_name{
+  font-size: 36px;
+  color: $color-primaire;
+  font-weight: 500;
+}
+.info_utilisateur_name {
+  font-size: 18px;
+}
+
+.info_utilisateur {
+  display: flex;
+  flex-direction: row;
+  width: min-content;
+  column-gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+.info_utilisateur_img {
+  background-color: $color-gray;
+  width: 100px;
+  height: 100px;
+  border-radius: 51px;
+}
+.info_utilisateur_name {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}

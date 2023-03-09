@@ -1,0 +1,80 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixin";
+
+.home-p {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+}
+.home {
+  width: 93%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  align-items: center;
+  height: 223px;
+  border-radius: 25px;
+  background: #00000067;
+  mix-blend-mode: darken;
+}
+.home-img {
+  width: 100%;
+  object-fit: fill;
+  height: 223px;
+  border-radius: 25px;
+  background: #000000;
+  mix-blend-mode: darken;
+}
+.home-paragraphe,
+.home-text {
+  color: $color-Secondaire;
+  font-size: 48px;
+  font-weight: 500;
+  margin: 0 0.2rem;
+  z-index: 10;
+  position: relative;
+  bottom: 143px;
+}
+
+@include pour_tablet {
+  .home-paragraphe,
+  .home-text {
+    font-size: 35px;
+    bottom: 129px;
+  }
+}
+
+@include portable {
+  .home,
+  .home-img {
+    border-radius: 10px;
+  }
+  .home-paragraphe,
+  .home-text {
+    font-size: 35px;
+    justify-content: start;
+    padding-left: 30px;
+    bottom: 156px;
+  }
+
+  .home-p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: auto;
+  }
+}
+@include portable_medium {
+  .home-paragraphe,
+  .home-text {
+    font-size: 30px;
+  }
+}
+
+@include portable_smal {
+  .home-paragraphe,
+  .home-text {
+    font-size: 23px;
+  }
+}

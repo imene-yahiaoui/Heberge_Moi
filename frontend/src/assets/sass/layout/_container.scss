@@ -1,0 +1,44 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixin";
+.container {
+  width: 90%;
+  height: auto;
+  background-color: #f7f7f700;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 65px 20px;
+  row-gap: 65px;
+  justify-items: center;
+}
+
+@include pour_tablet {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@include portable {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+    background-color: white;
+    row-gap: 38px;
+  }
+}
+
+@media only screen and   (max-width: 1270px) {
+
+  .container {
+    padding: 55px 20px;
+    row-gap: 55px;
+  }
+}
+
+@media only screen and   (max-width: 1080px) {
+
+  .container {
+    padding: 55px 20px;
+    row-gap: 55px;
+  }
+}

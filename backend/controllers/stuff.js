@@ -40,7 +40,7 @@ exports.modifyAccommodate = (req, res, next) => {
   Accommodate.updateOne({ _id: req.params.id }, accommodate)
     .then(() => {
       res.status(201).json({
-        message: "Thing updated successfully!",
+        message: "accommodate updated successfully!",
       });
     })
     .catch((error) => {

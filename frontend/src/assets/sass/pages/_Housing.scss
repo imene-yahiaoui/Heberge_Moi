@@ -1,0 +1,210 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixin";
+
+
+.collapseHosing {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.fa-angle-left,
+.fa-angle-right {
+  color: $color-Secondaire;
+  font-size: 120px;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  transform: translate(0, -50%);
+}
+.fa-angle-left {
+  left: 57px;
+  top: 204px;
+}
+.fa-angle-right {
+  top: 204px;
+  left: 1261px;
+}
+
+.carrousel_imgs {
+  height: 415px;
+  position: relative;
+}
+
+.carousel-notes {
+  color: $color-Secondaire;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 7px;
+  font-size: 24px;
+  right: 657px;
+}
+.tags {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  margin-left: -38px;
+  flex-wrap: wrap;
+}
+.containerTagInfo {
+  display: flex;
+  flex-direction: column;
+}
+.star {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+}
+
+.containerHostStars {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 31px;
+}
+.containerInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 94%;
+  margin: 0 auto;
+  padding-top: 12px;
+}
+.carrousel_icones {
+  position: absolute;
+}
+
+@include pour_tablet {
+  .carrousel_imgs {
+    height: 350px;
+  }
+
+  .fa-angle-left,
+  .fa-angle-right {
+    font-size: 100px;
+  }
+  .fa-angle-right {
+    left: 87%;
+    top: 49%;
+  }
+  .fa-angle-left {
+    left: 5%;
+    top: 49%;
+  }
+  .carousel-notes {
+    left: 52%;
+    top: 79%;
+  }
+}
+
+@include portable {
+  .fa-angle-left,
+  .fa-angle-right {
+    font-size: 80px;
+  }
+  .fa-angle-right {
+    left: 85%;
+    top: 49%;
+  }
+  .fa-angle-left {
+    left: 5%;
+    top: 49%;
+  }
+  .carousel-notes {
+    left: 52%;
+    top: 74%;
+    font-size: 23px;
+  }
+
+  .containerInfo {
+    flex-direction: column;
+  }
+  .containerHostStars {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .collapseHosing {
+    flex-direction: column;
+    margin-top: 13px;
+  }
+  .carrousel_imgs {
+    height: 255px;
+  }
+}
+
+@include portable_smal {
+  .fa-angle-left,
+  .fa-angle-right {
+    font-size: 40px;
+  }
+  .fa-angle-right {
+    left: 85%;
+    top: 49%;
+  }
+  .fa-angle-left {
+    left: 5%;
+    top: 49%;
+  }
+  .carousel-notes {
+    left: 52%;
+    top: 83%;
+    font-size: 13px;
+  }
+
+  .tags {
+    flex-wrap: wrap;
+  }
+}
+
+@include portable_medium {
+  .fa-angle-left,
+  .fa-angle-right {
+    font-size: 80px;
+  }
+  .fa-angle-right {
+    left: 85%;
+    top: 49%;
+  }
+  .fa-angle-left {
+    left: 5%;
+    top: 49%;
+  }
+  .carousel-notes {
+    left: 52%;
+    top: 70%;
+  }
+}
+
+@media only screen and (min-width: 604px) and (max-width: 760px) {
+  .fa-angle-right {
+    left: 88%;
+  }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 504px) {
+  .fa-angle-right {
+    left: 81%;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .fa-angle-left,
+  .fa-angle-right {
+    font-size: 80px;
+  }
+  .fa-angle-right {
+    left: 91%;
+  }
+  .fa-angle-left {
+    left: 5%;
+    top: 49%;
+  }
+  .carousel-notes {
+    left: 52%;
+    top: 78%;
+  }
+}

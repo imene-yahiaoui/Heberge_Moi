@@ -1,0 +1,83 @@
+@import "../base/body";
+@import "../abstracts/variables";
+@import "../abstracts/mixin";
+
+.header {
+  height: 87px;
+  margin: 20px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  width: 140px;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  width: 286px;
+  justify-content: space-between;
+}
+a {
+  font-weight: 500;
+  font-size: 25px;
+  color: rgb(92, 22, 6);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: rgb(169, 67, 67);
+}
+li {
+  list-style-type: none;
+}
+
+@include portable {
+  .header {
+    padding: 0 25px;
+    margin: 0;
+  }
+  .logo {
+    width: 110px;
+  }
+  a {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .nav {
+    width: 200px;
+  }
+}
+
+@include portable_smal {
+  .nav {
+    width: 110px;
+  }
+  a {
+    font-size: 10px;
+  }
+  .logo {
+    width: 100px;
+  }
+  li {
+    width: 66%;
+  }
+}
+@include portable_medium {
+  .nav {
+    width: 156px;
+  }
+}
+
+@media only screen and (max-width: 349px) {
+  .logo {
+    width: 70px;
+  }
+  a {
+    font-size: 6px;
+  }
+  li {
+    width: 43%;
+  }
+}

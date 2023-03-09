@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+@import "../abstracts/mixin";
+
+body {
+  margin: 0 auto;
+  font-family: "Montserrat";
+}
+
+@include portable {
+  body {
+    margin: 0 auto;
+    font-family: "Montserrat";
+    max-width: 767px;
+  }
+}
+
+@include portable_smal {
+  body {
+    margin: 0 auto;
+  }
+}
+body {
+  @include pour_tablet {
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,19 @@
+@import "../../sass/abstracts/variables";
+@import "../abstracts/mixin";
+
+.fa-star {
+  font-size: 30px;
+}
+
+@include portable_smal {
+  .fa-star {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 351px) and (max-width: 400px) {
+  .fa-star {
+    font-size: 18px;
+  }
+}
+
