@@ -1,4 +1,14 @@
 const express = require("express");
+const accommodateRoutes = require("./routes/accommodate");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+mongoose
+  .connect(
+    "mongodb+srv://ImeneYahiaoui:19921983@clusters.enxcmzl.mongodb.net/?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => console.log("Connexion à MongoDB réussie !"))
+  .catch(() => console.log(Error, "Connexion à MongoDB échouée !"));
 
 const app = express();
 
@@ -14,5 +24,7 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.use(bodyParser.json());
+app.use("/api/accommodate", accommodateRoutes);
 
 module.exports = app;
