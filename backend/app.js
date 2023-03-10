@@ -1,6 +1,9 @@
 const express = require("express");
 const accommodateRoutes = require("./routes/accommodate");
 const bodyParser = require("body-parser");
+const userRoutes = require('./routes/user');
+app.use('/api/auth', userRoutes);
+
 const mongoose = require("mongoose");
 mongoose
   .connect(
