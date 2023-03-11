@@ -1,16 +1,18 @@
-
-import "../../assets/sass/layout/_header.scss";
+import "../../assets/sass/layout/_sing.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {  logout, selectUser } from "../../helpers/features/userSlice";
-import { useNavigate} from "react-router-dom";
+import { logout, selectUser } from "../../helpers/features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Sing = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  function add() {
+    navigate("/Add");
+  }
+
   function Singout() {
-      console.log("jai bien ecouter")
     localStorage.removeItem("token");
     navigate("/");
     dispatch(logout());
@@ -22,19 +24,18 @@ const Sing = () => {
     localStorage.removeItem("token");
   }
   return !user ? (
-    <div className="nav">
-         
-      <button onClick={Singin} className="main-nav-item">
-      
-        login
+    <div>
+      <button onClick={Singin} className="btn-sing">
+        connexion
       </button>
     </div>
   ) : (
-    <div className="nav">
-    
-      <button onClick={Singout} className="main-nav-item">
-       
-      logout
+    <div className="modeAdmine">
+      <button onClick={add} className="btn-add">
+        Ajouter
+      </button>
+      <button onClick={Singout} className="btn-sing">
+        Se déconnecter
       </button>
     </div>
   );

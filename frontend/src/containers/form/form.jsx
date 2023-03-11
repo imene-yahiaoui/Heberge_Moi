@@ -58,7 +58,7 @@ const From = () => {
   return (
     <form>
       <div className="input-wrapper">
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Adresse e-mail</label>
         <input
           id="username"
           type="text"
@@ -67,7 +67,7 @@ const From = () => {
         />
       </div>
       <div className="input-wrapper">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Mot de passe</label>
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -77,22 +77,22 @@ const From = () => {
       </div>
       <div className="input-remember">
         <input type="checkbox" id="remember-me" />
-        <label htmlFor="remember-me">Remember me</label>
+        <label htmlFor="remember-me">Se souvenir de moi</label>
       </div>
       {error ? (
         <p className="error">
-          Error:Email and password cannot be null or empty
+          Erreur : l'adresse e-mail et le mot de passe ne peuvent pas être nuls ou vides
         </p>
       ) : (
         ""
       )}
       {!error && errorUser ? (
-        <p className="error">Error in username or password</p>
+        <p className="error">Erreur dans l'adresse e-mail ou le mot de passe</p>
       ) : (
         ""
       )}
       <button type="submit" className="sign-in-button" onClick={log}>
-        Sign In
+      connexion
       </button>
     </form>
   );

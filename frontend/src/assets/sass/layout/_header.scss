@@ -15,7 +15,7 @@
 .nav {
   display: flex;
   align-items: center;
-  width: 347px;
+  column-gap: 25px;
   justify-content: space-between;
 }
 a {
@@ -30,6 +30,13 @@ a:hover {
 }
 li {
   list-style-type: none;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 25px;
 }
 
 @include portable {

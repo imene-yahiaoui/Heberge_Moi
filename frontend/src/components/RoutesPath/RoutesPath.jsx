@@ -6,7 +6,6 @@ import NotFound from "../notFound/NotFound";
 import Add from "../AddAccommodate/Add";
 import Login from "../Login/Login";
 
-
 const RoutesPath = ({ posts, dataAbout }) => {
   return (
     <div>

@@ -1,0 +1,31 @@
+.btn-sing {
+  background: none;
+  border: none;
+  font-weight: 500;
+  font-size: 25px;
+  color: rgb(92, 22, 6);
+  text-decoration: none;
+  font-family: "Montserrat";
+  cursor: pointer;
+}
+
+.btn-sing:hover {
+  text-decoration: underline;
+  color: rgb(169, 67, 67);
+}
+
+.btn-add {
+  background: none;
+  border: none;
+  font-weight: 500;
+  font-size: 25px;
+  color: rgb(92, 22, 6);
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+}
+.modeAdmine {
+  display: flex;
+  flex-direction: row;
+  column-gap: 25px;
+}
