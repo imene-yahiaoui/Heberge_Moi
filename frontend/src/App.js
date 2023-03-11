@@ -12,6 +12,7 @@ const App = () => {
       try {
         const requete = await fetch(" http://localhost:3000/api/accommodate", {
           method: "GET",
+          
         });
         if (requete.ok) {
           const response = await requete.json();
@@ -27,7 +28,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchinfo = async () => {
       try {
         const requete = await fetch("../../About.json", {
           method: "GET",
@@ -40,7 +41,7 @@ const App = () => {
         console.log(e);
       }
     };
-    fetchData();
+    fetchinfo();
   }, []);
 
   return (

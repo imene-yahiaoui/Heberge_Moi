@@ -11,24 +11,25 @@ const Add = () => {
   const navigate = useNavigate();
 
   async function log(e) {
-   let item = { title};
-    // console.log(item)
-e.preventDefault()
+    let item = { title };
+    let token = localStorage.getItem("token");
+
+    e.preventDefault();
     let result = await fetch(" http://localhost:3000/api/accommodate", {
       method: "POST",
       headers: {
         accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify( item),
+      body: JSON.stringify(item),
     });
-    result = await result.json();
-    if (result.status === 200) {
+
+    if (result.status === 201) {
       navigate("/");
-    }
-    else{
-      console.log(item)
-      console.log("er")
+    } else {
+      console.log(item);
+      console.log("er");
     }
   }
   return (
@@ -41,8 +42,8 @@ e.preventDefault()
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-       </div>
-      
+      </div>
+
       {/* <div className="input-wrapper">
         <label htmlFor="description">Description</label>
         <input
