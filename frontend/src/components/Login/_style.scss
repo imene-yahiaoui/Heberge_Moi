@@ -1,12 +1,17 @@
-
-
 .sign-in-content {
   box-sizing: border-box;
-  background-color: white;
+  background: #aa918e42;
   width: 300px;
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+}
+.connexion {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .div {

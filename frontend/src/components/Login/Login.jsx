@@ -6,8 +6,7 @@ const Login = () => {
     <div className="div">
       <main className="main bg-dark">
         <section className="sign-in-content">
-          <i className="fa-solid fa-house-heart"></i>
-          <h1>connexion</h1>
+          <h1 className="connexion">connexion</h1>
           <From />
         </section>
       </main>
