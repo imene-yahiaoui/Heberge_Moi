@@ -1,15 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./_style.scss";
-
+import { useDispatch } from "react-redux";
+import { login } from "../../helpers/features/userSlice";
 
 const From = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
 
   async function log(e) {
     e.preventDefault();
@@ -23,7 +24,7 @@ const From = () => {
     }
     let item = { email, password };
 
-    let result = await fetch("http://localhost:3001/api/v1/user/login", {
+    let result = await fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
       headers: {
         accept: "application/json",
@@ -31,10 +32,18 @@ const From = () => {
       },
       body: JSON.stringify(item),
     });
+
     result = await result.json();
-    if (result.status === 200) {
-      navigate("/profile");
-      localStorage.setItem("token", result.body.token);
+    if (result.userId === "640b39bad3aa0c9d4044ba45") {
+      console.log("token", result.token);
+      localStorage.setItem("token", result.token);
+
+      navigate("/");
+      dispatch(
+        login({
+          user: item,
+        })
+      );
     } else {
       setErrorUser(true);
       setEmail("");
@@ -90,4 +99,3 @@ const From = () => {
 };
 
 export default From;
-// export  const response =;

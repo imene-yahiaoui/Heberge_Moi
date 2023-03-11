@@ -7,7 +7,6 @@ import "./assets/sass/pages/_App.scss";
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [dataAbout, setDataAbout] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -19,7 +18,6 @@ const App = () => {
 
           setPosts(response);
           console.log(response);
-         
         }
       } catch (e) {
         console.log(e, "error");

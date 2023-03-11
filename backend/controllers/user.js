@@ -26,6 +26,7 @@ exports.login = (req, res, next) => {
           .status(401)
           .json({ message: "Paire login/mot de passe incorrecte" });
       }
+      
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
