@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../../assets/sass/layout/_frame.scss";
+import "../assets/sass/layout/_frame.scss";
 
 const Frame = (props) => {
   return (

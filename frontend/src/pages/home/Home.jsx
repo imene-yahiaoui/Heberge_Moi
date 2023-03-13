@@ -1,9 +1,9 @@
 import Picture from "./Picture";
 import Image from "../../assets/images/bedroom-g72bb9dca7_640.jpg";
 import ImageMobile from "../../assets/images/hotel-gf13621c96_640.jpg";
-import Frame from "./Frame";
+import Frame from "../../components/Frame";
 import "../../assets/sass/layout/_container.scss";
-import useMediaQuery from "../utile/MediaQuery";
+import useMediaQuery from "../../helpers/utile/MediaQuery";
 
 const Home = ({ posts }) => {
   const matches = useMediaQuery("(max-width:767px)");

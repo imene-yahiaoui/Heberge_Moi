@@ -1,6 +1,6 @@
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import RoutesPath from "./components/RoutesPath/RoutesPath";
+import Header from "./containers/header/Header";
+import Footer from "./containers/footer/Footer";
+import RoutesPath from "./containers/RoutesPath/RoutesPath.jsx";
 import { useState, useEffect } from "react";
 import "./assets/sass/pages/_App.scss";
 

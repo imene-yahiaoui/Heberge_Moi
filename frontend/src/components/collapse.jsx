@@ -1,4 +1,4 @@
-import "../../assets/sass/layout/_collapase.scss";
+import "../assets/sass/layout/_collapase.scss";
 import { useState } from "react";
 
 const Collapse = (props) => {

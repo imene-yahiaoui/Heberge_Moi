@@ -5,7 +5,7 @@ import Info from "./info";
 import Tag from "./tag";
 import "../../assets/sass/pages/_Housing.scss";
 import Stars from "./stars";
-import Collapse from "../utile/collapse";
+import Collapse from "../../components/collapse";
 import Host from "./Host";
 import NotFound from "../notFound/NotFound";
 
@@ -14,11 +14,11 @@ const Housing = ({ posts }) => {
 
   const [error, setError] = useState(false);
 
-  console.log(error)
+  console.log(error);
 
   ////recuperer le ID
   const { id } = useParams();
-  console.log(id)
+  console.log(id);
 
   ///slidesLenghth
   const slidesLenghth = posts
@@ -79,7 +79,7 @@ const Housing = ({ posts }) => {
 
   useEffect(() => {
     if (!invalidId) {
-      console.log("invalide")
+      console.log("invalide");
       const getCurrentAccommodationData = async () => {
         try {
           let data = {};
@@ -93,7 +93,7 @@ const Housing = ({ posts }) => {
             );
 
             if (currentAccommodationData === undefined) {
-              console.log("undefined")
+              console.log("undefined");
               setError(true);
             }
           }
