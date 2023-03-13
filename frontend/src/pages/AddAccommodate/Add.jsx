@@ -1,17 +1,24 @@
 import "./_style.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ImageUploading from 'react-images-uploading';
+
 
 const Add = () => {
   const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [rating, setRating] = useState("");
-  // const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+  const [rating, setRating] = useState("");
+  const [location, setLocation] = useState("");
+  const [cover, setCover] = useState(null);
+  const [fileName, setFileName] = useState("no selected");
+  const [photos, setPhotos] = useState([]);
+  const [fileNamePhotos, setFileNamePhotos] = useState("no selected");
+  
 
   const navigate = useNavigate();
 
   async function log(e) {
-    let item = { title };
+    let item = { title, description, rating, location, cover ,photos};
     let token = localStorage.getItem("token");
 
     e.preventDefault();
@@ -44,23 +51,36 @@ const Add = () => {
         />
       </div>
 
-      {/* <div className="input-wrapper">
-        <label htmlFor="description">Description</label>
+      <div className="input-wrapper">
+        <label htmlFor="title">description</label>
         <input
-          id="Description"
+          id="description"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
+
       <div className="input-wrapper">
-        <label htmlFor="Rating">Rating</label>
+        <label htmlFor="rating">rating</label>
         <input
-          id="Rating"
+          id="rating"
           type="numbre"
           value={rating}
           onChange={(e) => setRating(e.target.value)}
         />
+      </div>
+      <div className="input-wrapper">
+      <input
+        type="file"
+        accept="image/*"
+        onChange={({ target: { files } }) => {
+          files[0] && setFileNamePhotos(files[0].name);
+          if (files) {
+            setPhotos(URL.createObjectURL(files[0]));
+          }
+        }}
+      ></input>
       </div>
       <div className="input-wrapper">
         <label htmlFor="location">location</label>
@@ -70,7 +90,18 @@ const Add = () => {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
-      </div>  */}
+      </div>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={({ target: { files } }) => {
+          files[0] && setFileName(files[0].name);
+          if (files) {
+            setCover(URL.createObjectURL(files[0]));
+          }
+        }}
+      ></input>
+
       <button type="submit" className="sign-in-button" onClick={log}>
         ajout
       </button>
