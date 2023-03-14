@@ -1,7 +1,6 @@
 import "./_style.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ImageUploading from 'react-images-uploading';
 
 
 const Add = () => {
@@ -10,37 +9,74 @@ const Add = () => {
   const [rating, setRating] = useState("");
   const [location, setLocation] = useState("");
   const [cover, setCover] = useState(null);
-  const [fileName, setFileName] = useState("no selected");
-  const [photos, setPhotos] = useState([]);
-  const [fileNamePhotos, setFileNamePhotos] = useState("no selected");
-  
 
+  const handleFileInputChange = (e) => {
+    setCover(e.target.files[0]);
+  };
   const navigate = useNavigate();
+  // console.log(cover)
+  // async function log(e) {
+  //   console.log(cover);
+  //   let item = { cover};
+  //   let token = localStorage.getItem("token");
+
+  //   e.preventDefault();
+  //   let result = await fetch(" http://localhost:3000/api/accommodate", {
+  //     method: "POST",
+  //     headers: {
+  //       accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     body: JSON.stringify(item),
+  //   });
+
+  //   if (result.status === 201) {
+  //     navigate("/");
+  //   } else {
+  //     console.log(item);
+  //     console.log("er");
+  //   }
+  // }
 
   async function log(e) {
-    let item = { title, description, rating, location, cover ,photos};
-    let token = localStorage.getItem("token");
-
     e.preventDefault();
+  
+    // Créer un objet FormData
+    const formData = new FormData();
+  
+    // Ajouter le fichier sélectionné à l'objet FormData
+    formData.append('cover', cover);
+  
+    // Ajouter les autres champs du formulaire à l'objet FormData
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('rating', rating);
+    formData.append('location', location);
+  
+    let token = localStorage.getItem("token");
+  
     let result = await fetch(" http://localhost:3000/api/accommodate", {
       method: "POST",
       headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(item),
+      body: formData,
     });
-
+  
     if (result.status === 201) {
       navigate("/");
     } else {
-      console.log(item);
       console.log("er");
     }
   }
   return (
     <form>
+      
+
+
+<input type="file" accept='image/*' name="cover" onChange={handleFileInputChange} />
+      
       <div className="input-wrapper">
         <label htmlFor="title">title</label>
         <input
@@ -70,18 +106,7 @@ const Add = () => {
           onChange={(e) => setRating(e.target.value)}
         />
       </div>
-      <div className="input-wrapper">
-      <input
-        type="file"
-        accept="image/*"
-        onChange={({ target: { files } }) => {
-          files[0] && setFileNamePhotos(files[0].name);
-          if (files) {
-            setPhotos(URL.createObjectURL(files[0]));
-          }
-        }}
-      ></input>
-      </div>
+  
       <div className="input-wrapper">
         <label htmlFor="location">location</label>
         <input
@@ -91,16 +116,8 @@ const Add = () => {
           onChange={(e) => setLocation(e.target.value)}
         />
       </div>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={({ target: { files } }) => {
-          files[0] && setFileName(files[0].name);
-          if (files) {
-            setCover(URL.createObjectURL(files[0]));
-          }
-        }}
-      ></input>
+  
+
 
       <button type="submit" className="sign-in-button" onClick={log}>
         ajout

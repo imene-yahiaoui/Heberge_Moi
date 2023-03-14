@@ -2,9 +2,13 @@ const Accommodate = require("../models/Accommodate");
 
 exports.createAccommodate = (req, res, next) => {
   delete req.body._id;
+
   const accommodate = new Accommodate({
     ...req.body,
+
+    cover: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
   });
+
   accommodate
     .save()
     .then(() => {
@@ -18,6 +22,25 @@ exports.createAccommodate = (req, res, next) => {
       });
     });
 };
+
+// exports.createAccommodate = async (req, res) => {
+
+// 	const title = req.body.title;
+
+// 	const imageUrl = `${req.protocol}://${host}/images/${req.file.filename}`;
+
+// 	try{
+// 		const work = await Works.create({
+// 			title,
+// 			imageUrl,
+
+// 		})
+// 		return res.status(201).json(work)
+// 	}catch (err) {
+// 		return res.status(500).json({ error: new Error('Something went wrong')})
+
+// 	}
+// }
 
 exports.getOneAccommodate = (req, res, next) => {
   Accommodate.findOne({

@@ -1,5 +1,5 @@
 const express = require("express");
-// const path = require("path");
+const path = require("path");
 const accommodateRoutes = require("./routes/accommodate");
 const userRoutes = require("./routes/user");
 const bodyParser = require("body-parser");
@@ -31,6 +31,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use("/api/accommodate", accommodateRoutes);
 app.use("/api/auth", userRoutes);
-// app.use("/images", express.static(path.join(__dirname, "images")));
+ app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
