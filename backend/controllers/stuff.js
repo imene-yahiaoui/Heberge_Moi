@@ -7,6 +7,9 @@ exports.createAccommodate = (req, res, next) => {
     ...req.body,
 
     cover: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+    pictures: `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`,
   });
 
   accommodate
@@ -23,25 +26,6 @@ exports.createAccommodate = (req, res, next) => {
     });
 };
 
-// exports.createAccommodate = async (req, res) => {
-
-// 	const title = req.body.title;
-
-// 	const imageUrl = `${req.protocol}://${host}/images/${req.file.filename}`;
-
-// 	try{
-// 		const work = await Works.create({
-// 			title,
-// 			imageUrl,
-
-// 		})
-// 		return res.status(201).json(work)
-// 	}catch (err) {
-// 		return res.status(500).json({ error: new Error('Something went wrong')})
-
-// 	}
-// }
-
 exports.getOneAccommodate = (req, res, next) => {
   Accommodate.findOne({
     _id: req.params.id,
@@ -56,20 +40,47 @@ exports.getOneAccommodate = (req, res, next) => {
     });
 };
 
+// exports.modifyAccommodate = (req, res, next) => {
+//   const accommodateObject = req.file ?{
+//     ...JSON.parse(req.body.accommodate),
+//      cover: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+// } : { ...req.body };
+
+//   Accommodate.updateOne({ _id: req.params.id }, accommodate)
+//     .then(() => {
+//       res.status(201).json({
+//         message: "accommodate updated successfully!",
+//       });
+//     })
+//     .catch((error) => {
+//       res.status(400).json({
+//         error: error,
+//       });
+//     });
+// };
+
 exports.modifyAccommodate = (req, res, next) => {
-  const accommodate = new Accommodate({
-    ...req.body,
-  });
-  Accommodate.updateOne({ _id: req.params.id }, accommodate)
-    .then(() => {
-      res.status(201).json({
-        message: "accommodate updated successfully!",
-      });
+  const accommodateObject = req.file
+    ? {
+        ...JSON.parse(req.body.accommodate),
+        cover: `${req.protocol}://${req.get("host")}/images/${
+          req.file.filename
+        }`,
+      }
+    : { ...req.body };
+
+  delete accommodateObject._userId;
+  Accommodate.findOne({ _id: req.params.id })
+    .then((accommodate) => {
+      Accommodate.updateOne(
+        { _id: req.params.id },
+        { ...accommodateObject, _id: req.params.id }
+      )
+        .then(() => res.status(200).json({ message: "Objet modifié!" }))
+        .catch((error) => res.status(401).json({ error }));
     })
     .catch((error) => {
-      res.status(400).json({
-        error: error,
-      });
+      res.status(400).json({ error });
     });
 };
 

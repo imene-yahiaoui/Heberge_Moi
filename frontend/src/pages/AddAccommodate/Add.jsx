@@ -9,35 +9,17 @@ const Add = () => {
   const [rating, setRating] = useState("");
   const [location, setLocation] = useState("");
   const [cover, setCover] = useState(null);
-
+  // const [pictures, setPictures] = useState(null);
+ 
   const handleFileInputChange = (e) => {
     setCover(e.target.files[0]);
   };
-  const navigate = useNavigate();
-  // console.log(cover)
-  // async function log(e) {
-  //   console.log(cover);
-  //   let item = { cover};
-  //   let token = localStorage.getItem("token");
 
-  //   e.preventDefault();
-  //   let result = await fetch(" http://localhost:3000/api/accommodate", {
-  //     method: "POST",
-  //     headers: {
-  //       accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify(item),
-  //   });
-
-  //   if (result.status === 201) {
-  //     navigate("/");
-  //   } else {
-  //     console.log(item);
-  //     console.log("er");
-  //   }
+  // const handleFileInputChangepicture=(e)=>{
+  //   setPictures(e.target.files[0]);
   // }
+  const navigate = useNavigate();
+
 
   async function log(e) {
     e.preventDefault();
@@ -47,7 +29,7 @@ const Add = () => {
   
     // Ajouter le fichier sélectionné à l'objet FormData
     formData.append('cover', cover);
-  
+    // formData.append('pictures', pictures);
     // Ajouter les autres champs du formulaire à l'objet FormData
     formData.append('title', title);
     formData.append('description', description);
@@ -116,7 +98,7 @@ const Add = () => {
           onChange={(e) => setLocation(e.target.value)}
         />
       </div>
-  
+      {/* <input type="file" accept='image/*' name="pictures" onChange={handleFileInputChangepicture} /> */}
 
 
       <button type="submit" className="sign-in-button" onClick={log}>
