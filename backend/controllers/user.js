@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const { body, validationResult } = require('express-validator');
+const { body, validationResult } = require("express-validator");
 
 exports.signup = (req, res, next) => {
   const errors = validationResult(req);
@@ -53,10 +53,10 @@ exports.login = (req, res, next) => {
 
 exports.validate = (method) => {
   switch (method) {
-    case 'signup': {
+    case "signup": {
       return [
-        body('email', 'Email invalide').isEmail(),
-        body('password', 'Mot de passe invalide').isLength({ min: 6 }),
+        body("email", "Email invalide").isEmail(),
+        body("password", "Mot de passe invalide").isLength({ min: 6 }),
       ];
     }
   }

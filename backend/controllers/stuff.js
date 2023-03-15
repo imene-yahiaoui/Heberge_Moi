@@ -41,24 +41,6 @@ exports.getOneAccommodate = (req, res, next) => {
     });
 };
 
-// exports.modifyAccommodate = (req, res, next) => {
-//   const accommodateObject = req.file ?{
-//     ...JSON.parse(req.body.accommodate),
-//      cover: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-// } : { ...req.body };
-
-//   Accommodate.updateOne({ _id: req.params.id }, accommodate)
-//     .then(() => {
-//       res.status(201).json({
-//         message: "accommodate updated successfully!",
-//       });
-//     })
-//     .catch((error) => {
-//       res.status(400).json({
-//         error: error,
-//       });
-//     });
-// };
 
 exports.modifyAccommodate = (req, res, next) => {
   const accommodateObject = req.file
