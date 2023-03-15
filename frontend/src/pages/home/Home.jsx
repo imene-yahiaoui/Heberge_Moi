@@ -4,8 +4,12 @@ import ImageMobile from "../../assets/images/hotel-gf13621c96_640.jpg";
 import Frame from "../../components/Frame";
 import "../../assets/sass/layout/_container.scss";
 import useMediaQuery from "../../helpers/utile/MediaQuery";
-
-const Home = ({ posts }) => {
+import { useSelector } from "react-redux";
+import { body } from "../../helpers/features/userSlice";
+const Home = () => {
+  const info = useSelector(body);
+  let posts = info.payload?.user?.body?.response;
+  console.log(posts);
   const matches = useMediaQuery("(max-width:767px)");
   return (
     <div>

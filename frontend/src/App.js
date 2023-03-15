@@ -3,21 +3,28 @@ import Footer from "./containers/footer/Footer";
 import RoutesPath from "./containers/RoutesPath/RoutesPath.jsx";
 import { useState, useEffect } from "react";
 import "./assets/sass/pages/_App.scss";
+import { useDispatch } from "react-redux";
+import { body } from "./helpers/features/userSlice.jsx";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [dataAbout, setDataAbout] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const requete = await fetch(" http://localhost:3000/api/accommodate", {
           method: "GET",
-          
         });
         if (requete.ok) {
           const response = await requete.json();
 
           setPosts(response);
+          dispatch(
+            body({
+              response,
+            })
+          );
           console.log(response);
         }
       } catch (e) {
@@ -25,7 +32,7 @@ const App = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchinfo = async () => {

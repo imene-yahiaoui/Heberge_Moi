@@ -1,7 +1,8 @@
 import "./_style.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+// import { useDispatch } from "react-redux";
+// import { body } from "../../helpers/features/userSlice";
 
 const Add = () => {
   const [title, setTitle] = useState("");
@@ -10,7 +11,7 @@ const Add = () => {
   const [location, setLocation] = useState("");
   const [cover, setCover] = useState(null);
   // const [pictures, setPictures] = useState(null);
- 
+
   const handleFileInputChange = (e) => {
     setCover(e.target.files[0]);
   };
@@ -19,25 +20,25 @@ const Add = () => {
   //   setPictures(e.target.files[0]);
   // }
   const navigate = useNavigate();
-
+  // const dispatch = useDispatch();
 
   async function log(e) {
     e.preventDefault();
-  
+
     // Créer un objet FormData
     const formData = new FormData();
-  
+
     // Ajouter le fichier sélectionné à l'objet FormData
-    formData.append('cover', cover);
+    formData.append("cover", cover);
     // formData.append('pictures', pictures);
     // Ajouter les autres champs du formulaire à l'objet FormData
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('rating', rating);
-    formData.append('location', location);
-  
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("rating", rating);
+    formData.append("location", location);
+
     let token = localStorage.getItem("token");
-  
+
     let result = await fetch(" http://localhost:3000/api/accommodate", {
       method: "POST",
       headers: {
@@ -45,7 +46,7 @@ const Add = () => {
       },
       body: formData,
     });
-  
+
     if (result.status === 201) {
       navigate("/");
     } else {
@@ -54,11 +55,13 @@ const Add = () => {
   }
   return (
     <form>
-      
+      <input
+        type="file"
+        accept="image/*"
+        name="cover"
+        onChange={handleFileInputChange}
+      />
 
-
-<input type="file" accept='image/*' name="cover" onChange={handleFileInputChange} />
-      
       <div className="input-wrapper">
         <label htmlFor="title">title</label>
         <input
@@ -88,7 +91,7 @@ const Add = () => {
           onChange={(e) => setRating(e.target.value)}
         />
       </div>
-  
+
       <div className="input-wrapper">
         <label htmlFor="location">location</label>
         <input
@@ -99,7 +102,6 @@ const Add = () => {
         />
       </div>
       {/* <input type="file" accept='image/*' name="pictures" onChange={handleFileInputChangepicture} /> */}
-
 
       <button type="submit" className="sign-in-button" onClick={log}>
         ajout

@@ -8,8 +8,14 @@ import Stars from "./stars";
 import Collapse from "../../components/collapse";
 import Host from "./Host";
 import NotFound from "../notFound/NotFound";
+import { useSelector } from "react-redux";
+import { body } from "../../helpers/features/userSlice";
 
-const Housing = ({ posts }) => {
+
+const Housing = () => {
+  const info = useSelector(body);
+  let posts = info.payload?.user?.body?.response;
+
   const [index, setCurrentindex] = useState(0);
 
   const [error, setError] = useState(false);
