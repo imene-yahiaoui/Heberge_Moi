@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Carrousel from "./carrousel";
 import Info from "./info";
-
+import  Price from "./price";
 import "../../assets/sass/pages/_Housing.scss";
 import Stars from "./stars";
 import Collapse from "../../components/collapse";
@@ -97,12 +97,16 @@ const Housing = () => {
                 .map((post) => (
                   <Info
                     title={post.title}
-                    location={post.location}
+                   
                     key={post._id}
-                  />
-                ))}
+                  /> ))}
+               
+               {posts
+                .filter((post) => post._id === id)
+                .map((post) => (
+              <Price  price={post.price} /> ))}
 
-              {/* <ul className="tags">{tag}</ul> */}
+             
             </div>
 
             <div className="containerHostStars">
@@ -110,7 +114,7 @@ const Housing = () => {
                 {posts
                   .filter((post) => post._id === id)
                   .map((post) => (
-                    <Host key={post._id} name={post.host.name} />
+                    <Host key={post._id} name={post.host.name}  location={post.location}/>
                   ))}
               </div>
               <div className="star">
