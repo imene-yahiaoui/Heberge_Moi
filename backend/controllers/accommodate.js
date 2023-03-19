@@ -8,9 +8,7 @@ exports.createAccommodate = (req, res, next) => {
     ...req.body,
 
     cover: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-    pictures: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+    picture:`${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
   });
 
   accommodate
@@ -40,7 +38,6 @@ exports.getOneAccommodate = (req, res, next) => {
       });
     });
 };
-
 
 exports.modifyAccommodate = (req, res, next) => {
   const accommodateObject = req.file
@@ -90,7 +87,7 @@ exports.deleteAccommodate = (req, res, next) => {
     });
 };
 
-exports.getAllStuff = (req, res, next) => {
+exports.getAllAccommodate = (req, res, next) => {
   Accommodate.find()
     .then((accommodates) => {
       res.status(200).json(accommodates);

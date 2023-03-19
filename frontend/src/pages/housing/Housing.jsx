@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Carrousel from "./carrousel";
 import Info from "./info";
-import Tag from "./tag";
+
 import "../../assets/sass/pages/_Housing.scss";
 import Stars from "./stars";
 import Collapse from "../../components/collapse";
@@ -11,12 +11,11 @@ import NotFound from "../notFound/NotFound";
 import { useSelector } from "react-redux";
 import { body } from "../../helpers/features/userSlice";
 
-
 const Housing = () => {
   const info = useSelector(body);
   let posts = info.payload?.user?.body?.response;
 
-  const [index, setCurrentindex] = useState(0);
+  // const [index, setCurrentindex] = useState(0);
 
   const [error, setError] = useState(false);
 
@@ -25,49 +24,6 @@ const Housing = () => {
   ////recuperer le ID
   const { id } = useParams();
   console.log(id);
-
-  ///slidesLenghth
-  const slidesLenghth = posts
-    .filter((post) => post._id === id)
-    .map((post) => post.pictures.length);
-
-  /// function presedent
-  const goToPrevious = () => {
-    const firstSlide = index === 0;
-
-    const newIndex = firstSlide ? slidesLenghth - 1 : index - 1;
-
-    setCurrentindex(newIndex);
-  };
-  ///function suivant
-  const goToNext = () => {
-    const lastSlide = index === slidesLenghth - 1;
-
-    const newIndex = lastSlide ? 0 : index + 1;
-    setCurrentindex(newIndex);
-  };
-
-  ////keyboard
-  function keyclavier(e) {
-    if (e.keyCode === 37) {
-      goToPrevious();
-    } else if (e.keyCode === 39) {
-      goToNext();
-    }
-  }
-  document.addEventListener("keydown", keyclavier);
-
-  ///tagLenght
-  const tagLength = posts
-    .filter((post) => post._id === id)
-    .map((post) => post.tags.length);
-
-  const tag = [];
-  for (let item = 0; item <= tagLength - 1; item++) {
-    posts
-      .filter((post) => post._id === id)
-      .map((post) => tag.push(<Tag tags={post.tags[item]} key={item} />));
-  }
 
   const Rating = posts
     .filter((post) => post._id === id)
@@ -128,48 +84,12 @@ const Housing = () => {
             {posts
               .filter((post) => post._id === id)
               .map((post) => (
-                <Carrousel slides={post.pictures[index]} key={post._id} />
-              ))}
-
-            {posts
-              .filter((post) => post._id === id)
-              .map((post) => (
-                <i
-                  style={{
-                    display: post.pictures.length === 1 ? "none" : "block",
-                  }}
-                  key={post._id}
-                  className="fa-solid fa-angle-left"
-                  onClick={goToPrevious}
-                ></i>
-              ))}
-            {posts
-              .filter((post) => post._id === id)
-              .map((post) => (
-                <i
-                  style={{
-                    display: post.pictures.length === 1 ? "none" : "block",
-                  }}
-                  key={post._id}
-                  className="fa-solid fa-angle-right"
-                  onClick={goToNext}
-                ></i>
-              ))}
-
-            {posts
-              .filter((post) => post._id === id)
-              .map((post) => (
-                <p
-                  style={{
-                    display: post.pictures.length === 1 ? "none" : "flex",
-                  }}
-                  key={post._id}
-                  className="carousel-notes"
-                >
-                  {[index + 1]}/{post.pictures.length}
-                </p>
+                <Carrousel slides={post.cover} alt={post.title} key={post._id}>
+                  {" "}
+                </Carrousel>
               ))}
           </div>
+
           <div className="containerInfo">
             <div className="containerTagInfo">
               {posts
@@ -182,7 +102,7 @@ const Housing = () => {
                   />
                 ))}
 
-              <ul className="tags">{tag}</ul>
+              {/* <ul className="tags">{tag}</ul> */}
             </div>
 
             <div className="containerHostStars">
@@ -190,11 +110,7 @@ const Housing = () => {
                 {posts
                   .filter((post) => post._id === id)
                   .map((post) => (
-                    <Host
-                      key={post._id}
-                      picture={post.host.picture}
-                      name={post.host.name}
-                    />
+                    <Host key={post._id} name={post.host.name} />
                   ))}
               </div>
               <div className="star">

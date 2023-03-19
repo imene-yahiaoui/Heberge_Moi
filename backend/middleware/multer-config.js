@@ -17,7 +17,5 @@ const storage = multer.diskStorage({
   },
 });
 
-  module.exports = multer({ storage: storage }).single("cover");
-
+module.exports = multer({ storage: storage }).single("cover");
  
-

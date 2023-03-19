@@ -12,7 +12,7 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
-      state.body = null;
+      // state.body = null;
     },
     body: (state, action) => {
       state.body = action.payload;
