@@ -3,21 +3,21 @@ mongoose.set("strictQuery", false);
 
 const accommodateSchema = mongoose.Schema({
   // id: { type: String },
-  title: { type: String },
-  description: { type: String },
-  //pictures: { type: String },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  //picture: { type: String },
   cover: { type: String, required: true },
   host: {
-    name: { type: String },
+    name: { type: String , required: true},
     // picture: { type: String },
-    numberfone: { type: Number },
-    email: { type: String },
+    numbrePhone: { type: Number, required: true },
+    email: { type: String , required: true},
   },
- // picture:{ type: String },
-  price: { type: Number },
-  rating: { type: String },
-  location: { type: String },
-  equipments: [{ type: String }],
+  // picture:{ type: String },
+  price: { type: Number , required: true},
+  rating: { type: String , required: true},
+  location: { type: String , required: true},
+  //equipments: [{ type: String }],
 });
 
 module.exports = mongoose.model("Accommodate", accommodateSchema);

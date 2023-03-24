@@ -8,7 +8,9 @@ exports.createAccommodate = (req, res, next) => {
     ...req.body,
 
     cover: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-    picture:`${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+    // picture: `${req.protocol}://${req.get("host")}/pictures/${
+    //   req.file.filename
+    // }`,
   });
 
   accommodate
@@ -24,6 +26,8 @@ exports.createAccommodate = (req, res, next) => {
       });
     });
 };
+
+
 
 exports.getOneAccommodate = (req, res, next) => {
   Accommodate.findOne({

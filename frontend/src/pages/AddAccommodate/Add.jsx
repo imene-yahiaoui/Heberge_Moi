@@ -3,28 +3,34 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { body } from "../../helpers/features/userSlice";
-import { Rating } from 'react-simple-star-rating'
+import { Rating } from "react-simple-star-rating";
 const Add = () => {
+  const [style, setStyle] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [equipments, setEquipments] = useState("");
+  const [numbrePhone, setNumbrePhone] = useState("");
+  const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [cover, setCover] = useState(null);
   const [price, setPrice] = useState("");
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
   const [hostName, setHostName] = useState("");
-   const dispatch = useDispatch();
+  const [picture, setPicture] = useState(null);
+
+  const dispatch = useDispatch();
 
   //pour recuperer la photo de cover
   const handleFileInputChange = (e) => {
     setCover(e.target.files[0]);
   };
-
-     // Catch Rating value
+  //pour recuperer la photo de piiiiiiiiic
+  const handleFileInputChangee = (e) => {
+    setPicture(e.target.files[0]);
+  };
+  // Catch Rating value
   const handleRating = (rate: number) => {
-    setRating(rate)
-  }
-
+    setRating(rate);
+  };
 
   const navigate = useNavigate();
 
@@ -34,18 +40,36 @@ const Add = () => {
     // Créer un objet FormData
     const formData = new FormData();
 
-    console.log(cover);
-    // Ajouter le fichier sélectionné à l'objet FormData
-    formData.append("cover", cover);
     // Ajouter les autres champs du formulaire à l'objet FormData
+    formData.append("cover", cover);
     formData.append("title", title);
     formData.append("description", description);
     formData.append("rating", rating);
     formData.append("location", location);
     formData.append("price", price);
-    formData.append("equipments", equipments);
+    formData.append("host.numbrePhone", numbrePhone);
+    formData.append("host.email", email);
     formData.append("host.name", hostName);
- 
+    formData.append("picture", picture);
+
+    if (
+      cover === null ||
+      title === null ||
+      description === null ||
+      location === null ||
+      price === null ||
+      numbrePhone === null ||
+      email === null ||
+      hostName === null
+    ) {
+      setStyle(true);
+      console.log(style);
+      function msgdelet() {
+        setStyle(false);
+      }
+      setTimeout(msgdelet, 30000);
+    }
+
     let token = localStorage.getItem("token");
 
     let result = await fetch(" http://localhost:3000/api/accommodate", {
@@ -87,13 +111,9 @@ const Add = () => {
     }
   }
   return (
-    <form>
-
-
-
-
-      
+    <form method="post" encType="multipart/form-data">
       <div className="input-wrapper">
+        <label htmlFor="cover">choisi photo pour le cover</label>
         <input
           type="file"
           accept="image/*"
@@ -122,13 +142,10 @@ const Add = () => {
         />
       </div>
 
-
-<div className='App'>
-     
-      <Rating onClick={handleRating} initialValue={rating} />
-
-      
-    </div>
+      <div className="input-wrapper">
+        <label htmlFor="Rating">choisi le Rating</label>
+        <Rating onClick={handleRating} initialValue={rating} />
+      </div>
       <div className="input-wrapper">
         <label htmlFor="location">location</label>
         <input
@@ -138,7 +155,6 @@ const Add = () => {
           onChange={(e) => setLocation(e.target.value)}
         />
       </div>
- 
 
       <div className="input-wrapper">
         <label htmlFor="price">price</label>
@@ -160,24 +176,45 @@ const Add = () => {
         />
       </div>
 
-
-     <div className="input-wrapper">
-      <label htmlFor="equipments">equipments</label>
-<input type="text"
-       cols="40" 
-       rows="5" 
-       name="equipments" 
-       id="equipments" 
-       value={equipments} 
-        onChange={(e) => setEquipments(e.target.value)}
-       />
-
+      <div className="input-wrapper">
+        <label htmlFor="numbrePhone">
+          entrez le numero de telephone de le host{" "}
+        </label>
+        <input
+          type="numbre"
+          name="numbrePhone"
+          id="numbrePhone"
+          value={numbrePhone}
+          onChange={(e) => setNumbrePhone(e.target.value)}
+        />
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="Host Name">Host email</label>
+        <input
+          id="Host Name"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
+      <div className="input-wrapper">
+        <label htmlFor="title">photo de host</label>
+        <input
+          type="file"
+          accept="image/*"
+          name="picture"
+          onChange={handleFileInputChangee}
+        />
+      </div>
 
       <button type="submit" className="sign-in-button" onClick={log}>
         ajout
       </button>
+      <p className={!style ? "input-errDis" : "input-errActive"}>
+        {" "}
+        tous les champs doivent être remplis
+      </p>
     </form>
   );
 };

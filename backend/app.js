@@ -32,5 +32,5 @@ app.use(bodyParser.json());
 app.use("/api/accommodate", accommodateRoutes);
 app.use("/api/auth", userRoutes);
  app.use("/images", express.static(path.join(__dirname, "images")));
-
+ app.use("/pictures", express.static(path.join(__dirname, "pictures")));
 module.exports = app;

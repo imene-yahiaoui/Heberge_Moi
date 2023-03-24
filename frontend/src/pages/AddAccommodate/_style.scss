@@ -15,6 +15,14 @@
   font-size: 1.2rem;
 }
 
+.input-errDis{
+  display: none;
+}
+.input-errActive{
+  display: block;
+  font-size: 1.2rem;
+  color: red;
+}
 .sign-in-button {
   display: block;
   width: 100%;
@@ -30,3 +38,4 @@
   font-size: 1.2rem;
   color: red;
 }
+

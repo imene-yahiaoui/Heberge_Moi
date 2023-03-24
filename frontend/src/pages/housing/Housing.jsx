@@ -10,6 +10,7 @@ import Host from "./Host";
 import NotFound from "../notFound/NotFound";
 import { useSelector } from "react-redux";
 import { body } from "../../helpers/features/userSlice";
+import { FcPhoneAndroid} from "react-icons/vsc";
 
 const Housing = () => {
   const info = useSelector(body);
@@ -140,17 +141,7 @@ const Housing = () => {
                   key={post._id}
                 />
               ))}
-            {posts
-              .filter((post) => post._id === id)
-              .map((post) => (
-                <Collapse
-                  title={"Équipements"}
-                  ArryText={post.equipments.map((equipment) => (
-                    <li key={equipment}>{equipment}</li>
-                  ))}
-                  key={post._id}
-                />
-              ))}
+          
           </div>
         </div>
       )}

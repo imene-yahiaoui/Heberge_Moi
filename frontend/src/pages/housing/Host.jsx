@@ -1,4 +1,5 @@
 import"../../assets/sass/layout/_host.scss"
+import { VscLocation } from "react-icons/vsc";
 
 const Host = (props) => {
     return (
@@ -8,6 +9,7 @@ const Host = (props) => {
     </div>
 
     <div className="info_utilisateur">
+    <VscLocation/>
     <p className="info_titre_localitation">{props.location}</p>
      
     </div>
