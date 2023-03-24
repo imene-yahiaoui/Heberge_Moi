@@ -33,7 +33,7 @@ const Housing = () => {
 
   const colorStars = {
     grey: "#f6f6f6",
-    red: "#ff6060",
+    red: "rgb(153, 38, 12)",
   };
 
   ///////////

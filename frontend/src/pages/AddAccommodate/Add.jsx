@@ -50,7 +50,7 @@ const Add = () => {
     formData.append("host.numbrePhone", numbrePhone);
     formData.append("host.email", email);
     formData.append("host.name", hostName);
-    formData.append("picture", picture);
+    formData.append("picture",picture);
 
     if (
       cover === null ||

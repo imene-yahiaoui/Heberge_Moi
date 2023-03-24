@@ -5,7 +5,7 @@ const Collapse = (props) => {
   const [open, setOpen] = useState("none");
 
   return (
-    <div className="collapse">
+    <div className="collapsee">
       <div className="collapse-title">
         <h6>{props.title}</h6>
         <div>
