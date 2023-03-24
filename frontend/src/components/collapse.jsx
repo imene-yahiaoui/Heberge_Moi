@@ -24,7 +24,7 @@ const Collapse = (props) => {
       </div>
       <div className="collapse-article" style={{ display: open }}>
         <p>{props.text}</p>
-        <ul className="ArryText">{props.ArryText} </ul>
+      
       </div>
     </div>
   );

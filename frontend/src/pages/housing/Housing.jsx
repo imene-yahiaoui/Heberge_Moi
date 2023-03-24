@@ -10,7 +10,7 @@ import Host from "./Host";
 import NotFound from "../notFound/NotFound";
 import { useSelector } from "react-redux";
 import { body } from "../../helpers/features/userSlice";
-import { FcPhoneAndroid} from "react-icons/vsc";
+// import { FcPhoneAndroid} from "react-icons/vsc";
 
 const Housing = () => {
   const info = useSelector(body);
@@ -105,7 +105,7 @@ const Housing = () => {
                {posts
                 .filter((post) => post._id === id)
                 .map((post) => (
-              <Price  price={post.price} /> ))}
+              <Price  price={post.price}   key={post.price}/> ))}
 
              
             </div>
