@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { body } from "./helpers/features/userSlice.jsx";
 
 const App = () => {
-  const [posts, setPosts] = useState([]);
+ 
   const [dataAbout, setDataAbout] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,7 +19,7 @@ const App = () => {
         if (requete.ok) {
           const response = await requete.json();
 
-          setPosts(response);
+         
           dispatch(
             body({
               response,
@@ -37,7 +37,7 @@ const App = () => {
   useEffect(() => {
     const fetchinfo = async () => {
       try {
-        const requete = await fetch("../../About.json", {
+        const requete = await fetch("http://localhost:3000/api/aboute", {
           method: "GET",
         });
         if (requete.ok) {
@@ -55,7 +55,7 @@ const App = () => {
     <div>
       <div className="App">
         <Header />
-        <RoutesPath posts={posts} dataAbout={dataAbout} />
+        <RoutesPath  dataAbout={dataAbout} />
       </div>
       <Footer />
     </div>
