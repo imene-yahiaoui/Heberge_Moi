@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { body } from "./helpers/features/userSlice.jsx";
 
 const App = () => {
- 
   const [dataAbout, setDataAbout] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,7 +18,6 @@ const App = () => {
         if (requete.ok) {
           const response = await requete.json();
 
-         
           dispatch(
             body({
               response,
@@ -55,7 +53,7 @@ const App = () => {
     <div>
       <div className="App">
         <Header />
-        <RoutesPath  dataAbout={dataAbout} />
+        <RoutesPath dataAbout={dataAbout} />
       </div>
       <Footer />
     </div>
