@@ -13,8 +13,18 @@
   height: 100%;
   background-position: center;
   border-radius: 25px;
-}
 
+}
+.FcFullTrash{
+  font-size: 35px;
+  cursor: pointer;
+ margin-left: 20px;
+ 
+}
+.FcFullTrash:hover{
+  font-size: 40px;
+  background-color: rgba(172, 159, 224, 0.562);
+}
 @include pour_tablet {
   .carousel {
     height: 350px;
