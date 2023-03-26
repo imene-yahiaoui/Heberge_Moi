@@ -27,8 +27,6 @@ exports.createAccommodate = (req, res, next) => {
     });
 };
 
-
-
 exports.getOneAccommodate = (req, res, next) => {
   Accommodate.findOne({
     _id: req.params.id,
@@ -46,7 +44,7 @@ exports.getOneAccommodate = (req, res, next) => {
 exports.modifyAccommodate = (req, res, next) => {
   const accommodateObject = req.file
     ? {
-        ...JSON.parse(req.body.accommodate),
+        ...req.body,
         cover: `${req.protocol}://${req.get("host")}/images/${
           req.file.filename
         }`,

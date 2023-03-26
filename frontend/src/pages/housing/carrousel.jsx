@@ -10,17 +10,19 @@ import { useDispatch } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-const Carrousel = ({ slides }) => {
+import { NavLink } from "react-router-dom";
+
+const Carrousel = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+
   const user = useSelector(selectUser);
   let token = localStorage.getItem("token");
   const { id } = useParams();
   const porjectID = id;
   const navigate = useNavigate();
-  console.log("le id cest ", id);
+
   const dispatch = useDispatch();
 
   function delet() {
@@ -57,7 +59,6 @@ const Carrousel = ({ slides }) => {
                     response,
                   })
                 );
-                console.log(response);
               }
             } catch (e) {
               console.log(e, "error");
@@ -71,19 +72,22 @@ const Carrousel = ({ slides }) => {
     };
     deletData();
   }
-  function edit() {}
+
 
   return !user ? (
     <div className="carousel">
       <div
         className="carousel-img"
-        style={{ backgroundImage: `url(${slides})` }}
+        style={{ backgroundImage: `url(${props.slides})` }}
       ></div>
     </div>
   ) : (
     <div className="carousel">
       <FcFullTrash onClick={delet} className="FcFullTrash" />
-      <FcEditImage className="FcFullTrash" onClick={edit} />
+      <NavLink to={`/Edit/${props._id}`} key={props._id}>
+      <FcEditImage className="FcFullTrash"  />
+     </NavLink>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Supprime</Modal.Title>
@@ -102,7 +106,7 @@ const Carrousel = ({ slides }) => {
       </Modal>
       <div
         className="carousel-img"
-        style={{ backgroundImage: `url(${slides})` }}
+        style={{ backgroundImage: `url(${props.slides})` }}
       ></div>
     </div>
   );

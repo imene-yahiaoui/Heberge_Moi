@@ -9,14 +9,14 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../helpers/features/userSlice";
 import ProtectrdRoute from "../../helpers/protectrdRoute";
 import Protect from "../../helpers/protect";
-
+import Edit   from "../../pages/edit/edit";
 const RoutesPath = ({ posts, dataAbout }) => {
   const user = useSelector(selectUser);
   return (
     <div>
       <Routes>
-        <Route path="/" exact element={<Home posts={posts} />} />
-        <Route path="/Housing/:id" element={<Housing posts={posts} />} />
+        <Route path="/" exact element={<Home  />} />
+        <Route path="/Housing/:id" element={<Housing  />} />
         <Route path="/About" element={<About dataAbout={dataAbout} />} />
         <Route
           path="/Add"
@@ -24,6 +24,15 @@ const RoutesPath = ({ posts, dataAbout }) => {
             <ProtectrdRoute user={user}>
               {" "}
               <Add />
+            </ProtectrdRoute>
+          }
+        />
+         <Route
+          path="/Edit/:id"
+          element={
+            <ProtectrdRoute user={user}>
+              {" "}
+              <Edit />
             </ProtectrdRoute>
           }
         />

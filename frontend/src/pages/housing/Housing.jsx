@@ -85,7 +85,7 @@ const Housing = () => {
             {posts
               .filter((post) => post._id === id)
               .map((post) => (
-                <Carrousel slides={post.cover} alt={post.title} key={post._id}>
+                <Carrousel slides={post.cover} alt={post.title} key={post._id}    _id={post._id}  > 
                   {" "}
                 </Carrousel>
               ))}

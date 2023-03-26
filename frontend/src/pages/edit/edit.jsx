@@ -1,22 +1,58 @@
-import "./_style.scss";
+import "../AddAccommodate/_style.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { body } from "../../helpers/features/userSlice";
 import { Rating } from "react-simple-star-rating";
-const Add = () => {
-  const [style, setStyle] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [numbrePhone, setNumbrePhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [location, setLocation] = useState("");
-  const [cover, setCover] = useState(null);
-  const [price, setPrice] = useState("");
-  const [rating, setRating] = useState(0);
-  const [hostName, setHostName] = useState("");
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+const Edit = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const info = useSelector(body);
+  let posts = info.payload?.user?.body?.response;
+  const porjectID = id;
+  //recupere les datas
+  const hostNameValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.host.name);
+  const coverValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.cover);
+  console.log("cover", coverValue);
+  const priceValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.price);
+
+  const locationValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.location);
+  const ratingValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.rating);
+  const numbrePhoneValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.host.numbrePhone);
+  const titleValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.title);
+  const descriptionValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.description);
+  const emailValue = posts
+    .filter((post) => post._id === porjectID)
+    .map((post) => post.host.email);
+  const [style, setStyle] = useState(false);
+  const [title, setTitle] = useState(titleValue);
+  const [description, setDescription] = useState(descriptionValue);
+  const [numbrePhone, setNumbrePhone] = useState(numbrePhoneValue);
+  const [email, setEmail] = useState(emailValue);
+  const [location, setLocation] = useState(locationValue);
+  const [cover, setCover] = useState(coverValue);
+  const [price, setPrice] = useState(priceValue);
+  const [rating, setRating] = useState(ratingValue);
+  const [hostName, setHostName] = useState(hostNameValue);
 
   //pour recuperer la photo de cover
   const handleFileInputChange = (e) => {
@@ -30,7 +66,7 @@ const Add = () => {
 
   const navigate = useNavigate();
 
-  async function log(e) {
+  async function editAccommodate(e) {
     e.preventDefault();
 
     // Créer un objet FormData
@@ -67,15 +103,18 @@ const Add = () => {
 
     let token = localStorage.getItem("token");
 
-    let result = await fetch(" http://localhost:3000/api/accommodate", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
+    let result = await fetch(
+      " http://localhost:3000/api/accommodate/" + porjectID,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      }
+    );
 
-    if (result.status === 201) {
+    if (result.status === 200) {
       const fetchData = async () => {
         try {
           const requete = await fetch(
@@ -95,13 +134,14 @@ const Add = () => {
             console.log(response);
           }
         } catch (e) {
-          console.log(e, "error");
+          console.log(e, "error" );
         }
       };
       fetchData();
 
       navigate("/");
     } else {
+      
       console.log("er");
     }
   }
@@ -113,6 +153,8 @@ const Add = () => {
           type="file"
           accept="image/*"
           name="cover"
+          // value={coverValue}
+
           onChange={handleFileInputChange}
         />
       </div>
@@ -193,8 +235,12 @@ const Add = () => {
         />
       </div>
 
-      <button type="submit" className="sign-in-button" onClick={log}>
-        ajout
+      <button
+        type="submit"
+        className="sign-in-button"
+        onClick={editAccommodate}
+      >
+        modifier
       </button>
       <p className={!style ? "input-errDis" : "input-errActive"}>
         {" "}
@@ -204,4 +250,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default Edit;
