@@ -34,7 +34,7 @@ const From = () => {
     });
 
     result = await result.json();
-    if (result.userId === "640b39bad3aa0c9d4044ba45") {
+    if (result.userId === "64242194688802ba1e6ee5fd") {
       console.log("token", result.token);
       localStorage.setItem("token", result.token);
 
@@ -81,7 +81,8 @@ const From = () => {
       </div>
       {error ? (
         <p className="error">
-          Erreur : l'adresse e-mail et le mot de passe ne peuvent pas être nuls ou vides
+          Erreur : l'adresse e-mail et le mot de passe ne peuvent pas être nuls
+          ou vides
         </p>
       ) : (
         ""
@@ -92,7 +93,7 @@ const From = () => {
         ""
       )}
       <button type="submit" className="sign-in-button" onClick={log}>
-      connexion
+        connexion
       </button>
     </form>
   );
