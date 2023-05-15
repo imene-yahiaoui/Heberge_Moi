@@ -8,6 +8,7 @@ import { body } from "./helpers/features/userSlice.jsx";
 
 const App = () => {
   const [dataAbout, setDataAbout] = useState([]);
+  const [accommodate, setAccommodate] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
@@ -17,20 +18,20 @@ const App = () => {
         });
         if (requete.ok) {
           const response = await requete.json();
-
+          setAccommodate(response)
           dispatch(
             body({
               response,
             })
           );
-          console.log(response);
+          console.log("accommodate here",accommodate)
         }
       } catch (e) {
         console.log(e, "error");
       }
     };
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, accommodate]);
 
   useEffect(() => {
     const fetchinfo = async () => {
@@ -53,7 +54,7 @@ const App = () => {
     <div>
       <div className="App">
         <Header />
-        <RoutesPath dataAbout={dataAbout} />
+        <RoutesPath dataAbout={dataAbout} accommodate={accommodate}/>
       </div>
       <Footer />
     </div>

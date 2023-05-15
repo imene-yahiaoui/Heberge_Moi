@@ -4,12 +4,33 @@ import ImageMobile from "../../assets/images/hotel-gf13621c96_640.jpg";
 import Frame from "../../components/Frame";
 import "../../assets/sass/layout/_container.scss";
 import useMediaQuery from "../../helpers/utile/MediaQuery";
-import { useSelector } from "react-redux";
-import { body } from "../../helpers/features/userSlice";
+import { useState, useEffect } from "react";
+// import { useSelector } from "react-redux";
+// import { body } from "../../helpers/features/userSlice";
 const Home = () => {
-  const info = useSelector(body);
-  let posts = info.payload?.user?.body?.response;
-  console.log(posts);
+  const [posts, setPosts] = useState([]);
+  // const info = useSelector(body);
+  // let posts = info.payload?.user?.body?.response;
+  // console.log(posts);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const requete = await fetch(" http://localhost:3000/api/accommodate", {
+          method: "GET",
+        });
+        if (requete.ok) {
+          const response = await requete.json();
+          setPosts(response);
+          console.log("accommodate here", response);
+        }
+      } catch (e) {
+        console.log(e, "error");
+      }
+    };
+    fetchData();
+  }, []);
+
   const matches = useMediaQuery("(max-width:767px)");
   return (
     <div>

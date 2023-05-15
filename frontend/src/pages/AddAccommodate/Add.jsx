@@ -118,7 +118,7 @@ const Add = () => {
       </div>
 
       <div className="input-wrapper">
-        <label htmlFor="title">title</label>
+        <label htmlFor="title">titre</label>
         <input
           id="title"
           type="text"
@@ -128,7 +128,7 @@ const Add = () => {
       </div>
 
       <div className="input-wrapper">
-        <label htmlFor="title">description</label>
+        <label htmlFor="title">déscription</label>
         <input
           id="description"
           type="text"
@@ -138,11 +138,11 @@ const Add = () => {
       </div>
 
       <div className="input-wrapper">
-        <label htmlFor="Rating">choisi le Rating</label>
+        <label htmlFor="Rating">choisi le Classement</label>
         <Rating onClick={handleRating} initialValue={rating} />
       </div>
       <div className="input-wrapper">
-        <label htmlFor="location">location</label>
+        <label htmlFor="location">localisation</label>
         <input
           id="location"
           type="text"
@@ -152,7 +152,7 @@ const Add = () => {
       </div>
 
       <div className="input-wrapper">
-        <label htmlFor="price">price</label>
+        <label htmlFor="price">prix</label>
         <input
           id="price"
           type="numbre"
@@ -162,7 +162,7 @@ const Add = () => {
       </div>
 
       <div className="input-wrapper">
-        <label htmlFor="Host Name">Host Name</label>
+        <label htmlFor="Host Name">Nom d'hôte</label>
         <input
           id="Host Name"
           type="text"
@@ -173,7 +173,7 @@ const Add = () => {
 
       <div className="input-wrapper">
         <label htmlFor="numbrePhone">
-          entrez le numero de telephone de le host{" "}
+          entrez le numero de telephone d'hôte{" "}
         </label>
         <input
           type="numbre"
@@ -184,7 +184,7 @@ const Add = () => {
         />
       </div>
       <div className="input-wrapper">
-        <label htmlFor="Host Name">Host email</label>
+        <label htmlFor="Host Name">email d'hôte</label>
         <input
           id="Host Name"
           type="text"
