@@ -106,7 +106,7 @@ const Add = () => {
     }
   }
   return (
-    <form method="post" encType="multipart/form-data">
+    <form method="post" encType="multipart/form-data" className="form-check">
       <div className="input-wrapper">
         <label htmlFor="cover">choisi photo pour le cover</label>
         <input

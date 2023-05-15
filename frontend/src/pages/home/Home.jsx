@@ -22,7 +22,7 @@ const Home = () => {
         if (requete.ok) {
           const response = await requete.json();
           setPosts(response);
-          console.log("accommodate here", response);
+    
         }
       } catch (e) {
         console.log(e, "error");

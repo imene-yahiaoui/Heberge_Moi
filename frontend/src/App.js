@@ -24,7 +24,7 @@ const App = () => {
               response,
             })
           );
-          console.log("accommodate here",accommodate)
+   
         }
       } catch (e) {
         console.log(e, "error");

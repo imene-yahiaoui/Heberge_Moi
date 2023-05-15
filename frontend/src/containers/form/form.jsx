@@ -34,6 +34,8 @@ const From = () => {
     });
 
     result = await result.json();
+   
+    // if (result.status === 200) {
     if (result.userId === "64242194688802ba1e6ee5fd") {
       console.log("token", result.token);
       localStorage.setItem("token", result.token);
